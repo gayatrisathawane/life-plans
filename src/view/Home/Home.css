@@ -1,0 +1,42 @@
+.tittle-project{
+    background-color: rgb(253, 159, 198);
+    /* width: 400px; */
+    padding: 15px;
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+
+}
+
+.flex-box-container{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top:50px ;
+}
+.taskheading{
+    font-size: 30px;
+   text-align: center;
+   margin-top: 30px;
+}
+.inputf{
+    width: 500px;
+    padding: 20px;
+    font-size: 20px;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: 2px solid rgb(237, 96, 202);
+  
+}
+.btntask{
+    width: 550px;
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 25px;
+    background-color: rgb(253, 159, 198);
+}
