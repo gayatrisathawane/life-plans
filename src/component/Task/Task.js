@@ -4,9 +4,9 @@ const Task = ({id,tittle,description,priority ,removeTaskList,obj}) =>
 {
     return(
         <div className='task-container'>
-            <h1 className='tasktittle'>{tittle}</h1>
+            <h2 className='tasktittle'>{tittle}</h2>
             <p className='taskdec'>{description}</p>
-            <span className='takpriority'>{priority}</span>
+            <span className='takpriority'> 🎯 {priority}</span>
             <span ><img src={bin} className='task-remove'  onClick={(obj)=>
             {
                 removeTaskList(obj)

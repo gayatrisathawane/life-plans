@@ -1,7 +1,7 @@
 import './Home.css';
 import './../../index.css';
 import Task from '../../component/Task/Task';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const Home = () =>
 {
@@ -17,6 +17,7 @@ const Home = () =>
        
     ])
       const randomId= Math.floor(Math.random() *1000);
+
     const addtoplan = () =>{
         const obj={
             id:randomId,
@@ -25,11 +26,15 @@ const Home = () =>
             priority:priority
         }
       
-        setTaskList([...tasklist,obj])
+
+        const newarraylist=[...tasklist,obj]
+        setTaskList(newarraylist)
 
         setTittle('')
         setDescription('')
         setPriority('')
+
+        savetolocalStorage(newarraylist);
 
 
 
@@ -41,10 +46,27 @@ const Home = () =>
 
         const tempArray=tasklist;
      tempArray.splice(index,1)
+
+     
        
         setTaskList([...tempArray])
+
+        savetolocalStorage(tempArray)
+
+
        
     }
+
+    const savetolocalStorage = (task) =>
+    {
+        localStorage.setItem('lifeplanner',JSON.stringify(task))
+    }
+
+    useEffect(()=>
+    {
+        const list = JSON.parse( localStorage.getItem('lifeplanner'));
+        setTaskList(list)
+    } ,[])
 
     const[tittle,setTittle]=useState('')
     const[description,setDescription]=useState('')

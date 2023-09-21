@@ -3,25 +3,29 @@
     max-width: auto;
     margin: 20px;
     height: 90px;
-    padding: 15px;
+    padding: 20px;
     border-radius: 10px;
-    border: 1px solid #d64fbf;
+    border: 1px solid #ff1a8c;
     box-shadow:  0 0 5px rgb(233, 157, 213);
     position: relative;
-    background-color: #fff4fd;
+    /* background-color: #fff4fd; */
+    background-color: #ffe6f2;
 }
 .tasktittle{
     margin-top: 20px;
+    font-size: 30px;
 }
 .takpriority{
     position: absolute;
     top:0;
     right: 0;
-    background-color: rgb(3, 218, 242);
+    background-color: #eb65a8;
     padding: 10px;
     border-radius:  0 10px 0 0;
     width: 120px;
-    font-size: 22px;
+    color: white;
+  
+    font-size: 20px;
 }
 .taskdec{
     font-size: 25px;
@@ -35,4 +39,5 @@
     cursor: pointer;
     color: rgb(15, 12, 12);
     height: 29px;
+    padding: 6px;
 }
