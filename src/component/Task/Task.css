@@ -9,7 +9,7 @@
     box-shadow:  0 0 5px rgb(233, 157, 213);
     position: relative;
     /* background-color: #fff4fd; */
-    background-color: #ffe6f2;
+    /* background-color: #ffe6f2; */
 }
 .tasktittle{
     margin-top: 20px;
@@ -40,4 +40,13 @@
     color: rgb(15, 12, 12);
     height: 29px;
     padding: 6px;
+}
+
+.edit-icon{
+    position: absolute;
+    bottom: 10px;
+    right: 60px;
+    height: 29px;
+    cursor: pointer;
+
 }

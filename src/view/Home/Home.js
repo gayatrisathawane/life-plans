@@ -1,11 +1,17 @@
 import './Home.css';
 import './../../index.css';
 import Task from '../../component/Task/Task';
+import showToast from 'crunchy-toast';
 import { useEffect, useState } from 'react';
 
 const Home = () =>
 {
-
+    const[id,setId]=useState(0)
+    const[tittle,setTittle]=useState('')
+    const[description,setDescription]=useState('')
+    const[priority,setPriority]=useState('')
+    const[isEdit,setEdit]=useState(false)
+  
     const [tasklist,setTaskList]=useState([
         {
             id:1,
@@ -16,7 +22,8 @@ const Home = () =>
 
        
     ])
-      const randomId= Math.floor(Math.random() *1000);
+    let randomId= Math.floor(Math.random() *1000);
+      
 
     const addtoplan = () =>{
         const obj={
@@ -35,42 +42,110 @@ const Home = () =>
         setPriority('')
 
         savetolocalStorage(newarraylist);
-
+         showToast('Task added  successfully', 'success', 3000);
 
 
     }
 
-    const removeTaskList = (obj) =>
+    const removeTaskList = (id) =>
      {
-        const index=tasklist.indexOf(obj);
-
+       let index;
+       tasklist.forEach((task,i)=>{
+        if(task.id === id){
+            index=i
+        }
+       })
+       
         const tempArray=tasklist;
-     tempArray.splice(index,1)
+        tempArray.splice(index,1)
 
-     
+        console.log(id)
        
         setTaskList([...tempArray])
 
-        savetolocalStorage(tempArray)
+        savetolocalStorage(tempArray);
 
-
-       
+        showToast('Deleted task successfully', 'alert', 3000); 
     }
+
+
+
+
+   
+    
 
     const savetolocalStorage = (task) =>
     {
         localStorage.setItem('lifeplanner',JSON.stringify(task))
     }
 
+    
+      
+
+
+
+const setTaskEditable = (id) =>{
+    setEdit(true)
+    setId(id);
+    let currentEditTask ;
+    tasklist.forEach((task)=>{
+    if(task.id === id){
+        currentEditTask=task;
+       
+    }
+    })
+
+setTittle(currentEditTask.tittle)
+setDescription(currentEditTask.description)
+setPriority(currentEditTask.priority)
+
+   
+
+   
+}
+const updateTask =()=>
+{
+    let indexToupdate;
+    tasklist.forEach((task,i)=>{
+        if(task.id === id)
+        {
+            indexToupdate=i;
+        }
+    })
+    const tempArray=tasklist;
+    tempArray[indexToupdate] = {
+        id:id,
+        tittle:tittle,
+        description:description,
+        priority:priority
+    }
+    setTaskList([...tempArray])
+
+    savetolocalStorage(tempArray)
+       setId(0);
+       setDescription('');
+       setPriority('');
+       setTittle('');
+       setEdit(false)
+
+    }
+    
+
+
+
+
     useEffect(()=>
     {
-        const list = JSON.parse( localStorage.getItem('lifeplanner'));
-        setTaskList(list)
+        const list = JSON.parse(localStorage.getItem('lifeplanner'));
+       
+        if(list && list.length>0)
+        {
+            setTaskList(list)
+        }
     } ,[])
 
-    const[tittle,setTittle]=useState('')
-    const[description,setDescription]=useState('')
-    const[priority,setPriority]=useState('')
+    
+    
     return (
         <div className='container'>
             <div className='tittle-project'>
@@ -83,14 +158,17 @@ const Home = () =>
                             {
                                tasklist.map((taskitem,index)=>{
 
-                                const{tittle,description,priority}=taskitem;
+                                const{id,tittle,description,priority}=taskitem;
 
-                                 return<Task tittle={tittle}
+                                 return<Task 
+                                 id={id}
+                                 tittle={tittle}
                                   description={description} 
                                   priority={priority} 
                                   key={index}
-                                  
-                                  removeTaskList={removeTaskList}/>
+                                  removeTaskList={removeTaskList}
+                                  setTaskEditable={ setTaskEditable}
+                                  />
                                })
                                
                             } 
@@ -99,7 +177,7 @@ const Home = () =>
                 </div>
 
                 <div>
-                    <h2 className='taskheading'>Add Task</h2>
+                    <h2 className='taskheading'>{isEdit?`Update Task `:'Add Task'}</h2>
 
                     <div>
                        
@@ -115,12 +193,20 @@ const Home = () =>
                  onChange={(e)=>{
                     setPriority(e.target.value)
                 }}/><br/>
-                <button type='button' className='btntask'  onClick={addtoplan}
 
-            >Add Life Plane ✔</button>
+
+
+                <div>
+                    {isEdit? <button type='button' className='btntask'  onClick={updateTask}
+                   >Update Task 🖊</button>:<button type='button' 
+                   className='btntask'  onClick={addtoplan}
+                   >Add Life Plane ✔</button>}
+                </div>
+                
 
 
                         </form>
+                        
                     </div>
                 </div>
 
