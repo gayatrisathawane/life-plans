@@ -25,7 +25,7 @@
     width: 500px;
     padding: 20px;
     font-size: 20px;
-    margin-top: 10px;
+    margin-top: 25px;
     border-radius: 10px;
     border: 2px solid #ff1a8c;
   
@@ -36,7 +36,31 @@
     border: none;
     padding: 10px;
     text-align: center;
-    margin-top: 10px;
+    margin-top: 20px;
     font-size: 25px;
-    background-color: rgb(253, 159, 198);
+    font-weight: bold;
+    background-color: rgb(247, 152, 193);
+}
+
+.btntask:hover{
+    background-color:white;
+    color: #ff1a8c;
+    border: 2px solid  #ff1a8c;
+    cursor: pointer;
+}
+.task-list-container{
+    /* background-color: #ff1a8c; */
+    overflow-y: scroll;
+    height: 450px;
+}
+.task-list-container::-webkit-scrollbar{
+    width:5px;
+}
+.footer{
+    background-color: rgb(241, 136, 180);
+    height:50px;
+    color: white;
+    font-size: 25px;
+    text-align: center;
+    margin-top: 10px;
 }

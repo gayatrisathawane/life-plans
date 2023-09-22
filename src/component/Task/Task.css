@@ -41,6 +41,9 @@
     height: 29px;
     padding: 6px;
 }
+.task-remove:hover{
+    transform: scale(1.2);
+}
 
 .edit-icon{
     position: absolute;
@@ -48,5 +51,10 @@
     right: 60px;
     height: 29px;
     cursor: pointer;
+
+}
+.edit-icon:hover{
+    transform: scale(1.2);
+  
 
 }
