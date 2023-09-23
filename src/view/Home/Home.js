@@ -2,6 +2,7 @@ import './Home.css';
 import './../../index.css';
 import Task from '../../component/Task/Task';
 import showToast from 'crunchy-toast';
+import Footer from '../../component/Footer/Footer';
 import { useEffect, useState } from 'react';
 
 const Home = () => {
@@ -177,7 +178,7 @@ const Home = () => {
     return (
         <div className='container'>
             <div className='tittle-project'>
-                <h1 >LIFE PLANES 📝 </h1>
+                <h1 className='' >LIFE PLANS 📝 </h1>
             </div>
             <div className='flex-box-container'>
                 <div >
@@ -206,7 +207,7 @@ const Home = () => {
                 </div>
 
                 <div>
-                    <h2 className='taskheading'>{isEdit ? `Update Task ` : 'Add Task'}</h2>
+                    <h2 className='taskheading'>{isEdit ? `Update plan ` : 'Add plans'}</h2>
 
                     <div>
 
@@ -239,7 +240,7 @@ const Home = () => {
                                     isEdit ? updateTask() : addtoplan()
                                 }}>
 
-                                    {isEdit ? 'Update Task 🖊' : 'Add Life Plane ✔'}
+                                    {isEdit ? 'Update Task 🖊' : 'Add Life Plan ✔'}
 
                                 </button>
 
@@ -255,8 +256,8 @@ const Home = () => {
 
 
             </div>
-
-            <div className='footer'>Made by ❤ GAYATRI SATHAWANE</div>
+              <Footer/>
+          
         </div>
       
     )

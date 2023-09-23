@@ -1,0 +1,20 @@
+.footer{
+    background-color: rgb(241, 136, 180);
+    height:50px;
+    color: white;
+    font-size: 25px;
+    text-align: center;
+    /* margin-top: 10px; */
+    position: fixed;
+    width: 100%;
+    padding: 10px;
+    padding-bottom: 15px;
+}
+.github-logo{
+    height: 40px;
+    margin-top: 5px;
+    margin-left: 10px;
+}
+.github-link{
+    text-decoration: none;
+}
