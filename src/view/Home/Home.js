@@ -10,6 +10,8 @@ const Home = () => {
     const [tittle, setTittle] = useState('')
     const [description, setDescription] = useState('')
     const [priority, setPriority] = useState('')
+    const[search,setSearchTerm]=useState('')
+    
     const [isEdit, setEdit] = useState(false)
 
     const [tasklist, setTaskList] = useState([
@@ -23,12 +25,9 @@ const Home = () => {
 
     ])
 
+//add task
 
-
-    const addtoplan = () => {
-
-
-
+    const addtoplan = () =>{
         let randomId = Math.floor(Math.random() * 1000);
         const obj = {
             id: randomId,
@@ -48,12 +47,9 @@ const Home = () => {
 
         savetolocalStorage(newarraylist);
         showToast('Task added  successfully', 'success', 3000);
-
-
-
-
     }
 
+    //remove task
     const removeTaskList = (id) => {
         let index;
         tasklist.forEach((task, i) => {
@@ -79,7 +75,7 @@ const Home = () => {
 
 
 
-
+//save to localstorage
     const savetolocalStorage = (task) => {
         localStorage.setItem('lifeplanner', JSON.stringify(task))
     }
@@ -88,6 +84,7 @@ const Home = () => {
 
 
 
+//set editable task
 
     const setTaskEditable = (id) => {
         setEdit(true)
@@ -96,18 +93,16 @@ const Home = () => {
         tasklist.forEach((task) => {
             if (task.id === id) {
                 currentEditTask = task;
-
             }
         })
 
         setTittle(currentEditTask.tittle)
         setDescription(currentEditTask.description)
         setPriority(currentEditTask.priority)
-
-
-
-
+        
     }
+
+    //update task
     const updateTask = () => {
         let indexToupdate;
         tasklist.forEach((task, i) => {
@@ -123,13 +118,15 @@ const Home = () => {
             priority: priority
         }
 
+        setTaskList([...tempArray])
+
+        savetolocalStorage(tempArray)
+
 
         if (checkField() === false) {
             return;
         }
-        setTaskList([...tempArray])
-
-        savetolocalStorage(tempArray)
+       
         setId(0);
         inputfield();
 
@@ -173,6 +170,20 @@ const Home = () => {
         }
     }, [])
 
+    // const cancelEditTask =() =>{
+    //     setEdit(false)
+    //     setTittle('')
+    //     setPriority('')
+    //     setDescription('')
+        
+    // }
+
+    const filterTask = tasklist.filter((task,i)=>{
+        const title = task.tittle.toLowerCase();
+
+        return(title.includes(search.toLowerCase()))
+    })
+
 
 
     return (
@@ -183,10 +194,14 @@ const Home = () => {
             <div className='flex-box-container'>
                 <div >
                     <h2 className='taskheading'>Task List</h2>
+
+                    <input type="text" value={search} onChange={(e)=>{
+                        setSearchTerm(e.target.value)
+                    }}  className="inputsearch" />
                     <div className='task-list-container'>
 
                         {
-                            tasklist.map((taskitem, index) => {
+                            filterTask.map((taskitem, index) => {
 
                                 const { id, tittle, description, priority } = taskitem;
 
@@ -251,12 +266,16 @@ const Home = () => {
                         </form>
 
                     </div>
+                    {
+                tasklist.length ==0 ? <h1>nonn</h1> :null
+              }
                 </div>
 
-
+              
 
             </div>
               <Footer/>
+            
           
         </div>
       

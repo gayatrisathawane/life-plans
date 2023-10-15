@@ -62,4 +62,12 @@
 .task-list-container::-webkit-scrollbar{
     width:5px;
 }
-
+.inputsearch{
+    width:550px;
+    padding: 10px;
+    border-radius: 20px 20px;
+    box-shadow: 0 0 5px 0 rgb(99, 96, 96);
+    border: none;
+    outline: none;
+    font-size: 18px;
+}

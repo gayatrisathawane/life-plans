@@ -15,10 +15,7 @@ const Task = ({id,tittle,description,priority ,removeTaskList,setTaskEditable}) 
 
             }}/></span> 
 
-            {/* <span className='task-remove' onClick={()=>
-            {
-                removeTaskList(id)
-            }}>🗑</span> */}
+          
 
             <span><img src={pencil} className='edit-icon' alt='edit-icon' 
             onClick={()=>
